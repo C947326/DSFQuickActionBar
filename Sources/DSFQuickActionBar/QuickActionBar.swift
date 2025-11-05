@@ -56,6 +56,7 @@ public struct QuickActionBar<IdentifierType: Hashable, RowContentView: View>: NS
 	///   - barWidth: The width of the presented bar
 	///   - showKeyboardShortcuts: display keyboard shortcuts for the first 10 entries
 	///   - requiredClickCount: The number of clicks on an item to activate it
+	///   - autoSelectFirstResult: Automatically select the first result when search results appear, allowing Enter to activate without arrow key navigation
 	///   - searchTerm: The search term to use, updated when the quick action bar is closed
 	///   - selectedItem: The item selected by the user
 	///   - placeholderText: The text to display in the quick action bar when the search term is empty
@@ -70,6 +71,7 @@ public struct QuickActionBar<IdentifierType: Hashable, RowContentView: View>: NS
 		barWidth: Double? = nil,
 		showKeyboardShortcuts: Bool = false,
 		requiredClickCount: DSFQuickActionBar.RequiredClickCount = .double,
+		autoSelectFirstResult: Bool = false,
 		searchTerm: Binding<String> = .constant(""),
 		selectedItem: Binding<IdentifierType?>,
 		placeholderText: String? = DSFQuickActionBar.DefaultPlaceholderString,
@@ -84,6 +86,7 @@ public struct QuickActionBar<IdentifierType: Hashable, RowContentView: View>: NS
 		self.barWidth = barWidth
 		self.showKeyboardShortcuts = showKeyboardShortcuts
 		self.requiredClickCount = requiredClickCount
+		self.autoSelectFirstResult = autoSelectFirstResult
 		self.location = location
 		self.placeholderText = placeholderText
 		self._currentSearchText = searchTerm
@@ -100,6 +103,7 @@ public struct QuickActionBar<IdentifierType: Hashable, RowContentView: View>: NS
 	private let placeholderText: String?
 	private let showKeyboardShortcuts: Bool
 	private let requiredClickCount: DSFQuickActionBar.RequiredClickCount
+	private let autoSelectFirstResult: Bool
 	private let _rowContent: (IdentifierType, String) -> RowContentView?
 	private let _itemsForSearchTerm: ItemsForSearchTermAsyncType
 	private let _isItemSelectable: ((IdentifierType) -> Bool)?
@@ -151,6 +155,9 @@ public extension QuickActionBar {
 
 			// Set the required click count
 			quickAction.requiredClickCount = requiredClickCount
+
+			// Set auto-select first result behavior
+			quickAction.autoSelectFirstResult = autoSelectFirstResult
 
 			let barWidth: CGFloat = {
 				if let w = self.barWidth { return CGFloat(w) }

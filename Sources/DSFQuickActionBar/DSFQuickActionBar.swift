@@ -60,6 +60,10 @@ public class DSFQuickActionBar {
 	/// If targeting 10.12 or 10.11 then you'll need to specify a row height (they don't support automaticTableRowHeights)
 	public var rowHeight: CGFloat = 36
 
+	/// Automatically select the first selectable result when search results appear
+	/// When true, pressing Enter immediately activates the first result without needing to press down arrow first
+	public var autoSelectFirstResult: Bool = false
+
 	/// The current search text
 	public var currentSearchText: String? {
 		quickActionBarWindow?.currentSearchText

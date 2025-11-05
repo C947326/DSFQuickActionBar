@@ -154,8 +154,8 @@ private extension DSFQuickActionBar.ResultsView {
 		// Build the first view of the table
 		self.tableView.reloadData()
 
-		// Select the first selectable row (if possible)
-		if self.identifiers.count > 0 {
+		// Automatically select the first selectable row if configured
+		if self.quickActionBar.autoSelectFirstResult && self.identifiers.count > 0 {
 			_ = self.selectFirstSelectableRow()
 		}
 	}
