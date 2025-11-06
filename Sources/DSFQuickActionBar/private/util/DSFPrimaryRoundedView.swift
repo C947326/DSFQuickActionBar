@@ -75,16 +75,7 @@ final class DSFPrimaryRoundedView: NSView {
 		baseLayer.cornerRadius = 10
 		baseLayer.backgroundColor = NSColor.windowBackgroundColor.cgColor
 
-		// Attempting to match the style of spotlight
-		if DSFAppearanceCache.shared.isDark {
-			baseLayer.borderWidth = 1
-			baseLayer.borderColor =
-				DSFAppearanceCache.shared.increaseContrast
-					? NSColor.secondaryLabelColor.cgColor
-					: NSColor.tertiaryLabelColor.cgColor
-		}
-		else {
-			baseLayer.borderWidth = 0
-		}
+		// Remove border to avoid artifacts on rounded corners
+		baseLayer.borderWidth = 0
 	}
 }

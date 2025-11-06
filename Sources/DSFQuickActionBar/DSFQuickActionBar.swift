@@ -34,7 +34,7 @@ public class DSFQuickActionBar {
 	public static let DefaultHeight: CGFloat = 320
 
 	// The default placeholder text to display in the edit field
-	public static let DefaultPlaceholderString: String = "Quick Actions"
+	public static let DefaultPlaceholderString: String = ""
 
 	/// The default image to display in the search field
 	public static let DefaultImage: NSImage = {
